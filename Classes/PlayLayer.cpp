@@ -17,8 +17,6 @@ using namespace CocosDenshion;
 #define BEN_CATEGORY 0x1
 #define FISH_CATEGORY 0x2
 
-#define BEN_ANIMATE_ACTION 0x100
-
 #define BEN_BODY_NORMAL 1
 #define BEN_BODY_DOWN 2
 
@@ -95,26 +93,26 @@ void PlayLayer::onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * 
 	Vector<Sprite*> cloudBgs;
 	cloudBgs.pushBack(cloudBg);
 	ScrollBg *scrollBg = ScrollBg::create();
-	scrollBg->addBg(cloudBgs, BG_HORIZONTAL);
+	scrollBg->setBg(cloudBgs, -0.6, 0);
 	scrollBg->setPosition(0, 290);
 	bgNode->addChild(scrollBg);
-	scrollBg->scroll(-0.6, 0);
+	scrollBg->scroll();
 	
 	Vector<Sprite*> middleBgs;
 	middleBgs.pushBack(waveBg);
 	ScrollBg *scrollMiddleBg = ScrollBg::create();
-	scrollMiddleBg->addBg(middleBgs, BG_HORIZONTAL);
+	scrollMiddleBg->setBg(middleBgs, -1.2, 0);
 	scrollMiddleBg->setPosition(0, 100);
 	bgNode->addChild(scrollMiddleBg);
-	scrollMiddleBg->scroll(-1.2, 0);
+	scrollMiddleBg->scroll();
 	
 	Vector<Sprite*> bottomBgs;
 	bottomBgs.pushBack(seaBg);
 	ScrollBg *scrollBottomBg = ScrollBg::create();
-	scrollBottomBg->addBg(bottomBgs, BG_HORIZONTAL);
+	scrollBottomBg->setBg(bottomBgs, -1.2, 0);
 	scrollBottomBg->setPosition(0, 0);
 	bgNode->addChild(scrollBottomBg);
-	scrollBottomBg->scroll(-1.2, 0);
+	scrollBottomBg->scroll();
 		
 	setScoreString();
 	bestLabel->setString(StringUtils::format("best: %d", bestScore));
@@ -341,7 +339,7 @@ void PlayLayer::setBenAnimate(int animateType)
 	}
 	
 	benAnimate = getFrameAnimation(benAnimateFrames, 0.2);
-	benAnimate->setTag(BEN_ANIMATE_ACTION);
+//	benAnimate->setTag(BEN_ANIMATE_ACTION);
 	ben->runAction(RepeatForever::create(benAnimate));
 }
 
